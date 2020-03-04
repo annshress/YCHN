@@ -1,19 +1,28 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-const Comment = () => {
+const Comment = props => {
+  const {text} = props.comment;
+
   return (
     <View style={styles.container}>
-      <Text>Comment</Text>
+      <Text>{text}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 5,
+    marginBottom: 10,
+    marginHorizontal: 5,
+    paddingHorizontal: 5,
+    borderLeftColor: 'pink',
+    borderLeftWidth: 6,
+    borderRadius: 4,
+    shadowColor: 'grey',
+    elevation: 5,
+    backgroundColor: 'white',
   },
 });
 
