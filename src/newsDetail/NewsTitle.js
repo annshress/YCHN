@@ -7,9 +7,10 @@ import {
   ToastAndroid,
 } from 'react-native';
 import {timeSince} from '../utils/datetime';
+import SubTitle from './SubTitle';
 
 const NewsTitle = props => {
-  const {title, url, time, descendants} = props;
+  const {title, url, time, descendants, by} = props;
 
   const showUrl = () => {
     ToastAndroid.show(url, ToastAndroid.SHORT);
@@ -39,26 +40,7 @@ const NewsTitle = props => {
             </View>
           </TouchableOpacity>
         </View>
-        <View style={styles.subContainer}>
-          <View style={styles.link}>
-            <View>
-              <Text>{url}</Text>
-            </View>
-            <View>
-              <Text style={styles.sinceText}>{since}</Text>
-            </View>
-          </View>
-          <View style={styles.like}>
-            <TouchableOpacity>
-              <Text>Like</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.save}>
-            <TouchableOpacity>
-              <Text>Save</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <SubTitle {...{url}} {...{since}} {...{by}} />
         <View style={styles.comment}>
           <Text style={styles.commentText}>{descendants} comments</Text>
         </View>
@@ -81,20 +63,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     flexDirection: 'row-reverse',
   },
-  subContainer: {
-    paddingVertical: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  link: {
-    flex: 6,
-  },
-  like: {
-    flex: 1,
-  },
-  save: {
-    flex: 1,
-  },
   comment: {
     marginTop: 5,
     marginLeft: 20,
@@ -104,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   sinceText: {
-    color: 'darkorange',
+    color: 'red',
   },
   border: {
     borderBottomColor: 'red',
