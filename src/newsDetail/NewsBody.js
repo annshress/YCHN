@@ -3,10 +3,10 @@ import {StyleSheet, View, Text} from 'react-native';
 import NewsTitle from './NewsTitle';
 
 const NewsBody = props => {
-  const {title, url, time} = props.detail;
+  const {detail} = props;
   return (
     <View style={styles.container}>
-      <NewsTitle title={title} {...{url}} {...{time}} />
+      <NewsTitle {...detail} />
     </View>
   );
 };
