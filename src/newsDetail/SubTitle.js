@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 
+import {authorText} from '../assets/styles/styles';
+
 const SubTitle = props => {
   const {url, since, by} = props;
 
@@ -10,9 +12,10 @@ const SubTitle = props => {
         <View>
           <Text>{url}</Text>
         </View>
-        <View style={styles.author}>
-          <Text>{since} - </Text>
-          <Text style={styles.authorText}>{by}</Text>
+        <View>
+          <Text style={authorText.style}>
+            Posted by {by} &bull; {since}
+          </Text>
         </View>
       </View>
       <View style={styles.like}>
@@ -43,13 +46,6 @@ const styles = StyleSheet.create({
   },
   save: {
     flex: 1,
-  },
-  author: {
-    flexDirection: 'row',
-  },
-  authorText: {
-    color: 'red',
-    fontWeight: 'bold',
   },
 });
 

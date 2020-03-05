@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {timeSince} from '../utils/datetime';
+import {authorText} from '../assets/styles/styles';
 
 const Comment = props => {
   const {text, time, by, level} = props.comment;
@@ -9,12 +10,26 @@ const Comment = props => {
     <View style={{paddingLeft: level, marginTop: level ? -7 : 0}}>
       <View style={styles.container}>
         <View style={styles.topBar}>
-          <Text>{timeSince(time)} - </Text>
-          <TouchableOpacity>
-            <Text style={styles.authorText}>{by}</Text>
-          </TouchableOpacity>
+          <View>
+            <Text style={authorText.style}>
+              {by} &bull; {timeSince(time)}
+            </Text>
+          </View>
         </View>
-        <Text>{text}</Text>
+        <View>
+          <Text>{text}</Text>
+        </View>
+        <View style={styles.bottomBar}>
+          <View>
+            <Text>###</Text>
+          </View>
+          <View>
+            <Text>Reply</Text>
+          </View>
+          <View>
+            <Text>Up</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -35,9 +50,9 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: 'row',
   },
-  authorText: {
-    color: 'red',
-    fontWeight: 'bold',
+  bottomBar: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });
 
