@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   },
   authorText: {
     color: 'red',
+    fontWeight: 'bold',
   },
 });
 

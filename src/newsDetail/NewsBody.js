@@ -8,7 +8,7 @@ const NewsBody = props => {
   return (
     <View style={styles.container}>
       <NewsTitle {...detail} />
-      <Comments kids={detail.kids} />
+      <Comments kids={detail.kids} root={detail.id} />
     </View>
   );
 };

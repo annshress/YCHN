@@ -3,7 +3,7 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 import Comment from './Comment';
 
 const Comments = props => {
-  const {kids} = props;
+  const {kids, root} = props;
 
   // using the kids IDs, fetch the resources
   const [comments] = React.useState([
@@ -35,11 +35,57 @@ const Comments = props => {
       time: 1583340431,
       type: 'comment',
     },
+    {
+      by: 'keanzu',
+      id: 22483709,
+      kids: [22484080, 22484046],
+      parent: 22483676,
+      text:
+        'Those are toys that are fun to play with for people who can swim fine. The problem is when non-swimmers use them as boats. They are not safety devices.<p>Without the rings non-swimmers couldn&#x27;t get into trouble but swimmers have less fun. You could also pave over the pool with concrete and remove the hazard entirely - no fun for swimmers but all risks of drowning removed.',
+      time: 1583329974,
+      type: 'comment',
+    },
+    {
+      by: 'lzol',
+      id: 22484080,
+      kids: [22484167, 22484180],
+      parent: 22483709,
+      text:
+        'As someone who worked as a wave pool lifeguard for 8 years and is a current certified Water Safety Instructor, I mostly agree. The large rafts are never really what I have an issue with. It&#x27;s water wings and other personal flotation devices that are much more troublesome.<p>Parents are a huge part of the issue. PFDs give them a false sense of security where they feel like they don&#x27;t have to watch their kid. The best change my old pool ever made was banning them (besides USCG approved life vests). The rafts were almost never an issue unless parents stuck their kid in the middle and stopped supervising (which happened a lot and we&#x27;d yell at the about). Crappy parental supervision is the cause of most problems at pools.',
+      time: 1583332742,
+      type: 'comment',
+    },
   ]);
+
+  const getNextComments = () => {
+    // fetch next 2 comments and store into state
+  };
+
+  var tree = [];
+
+  const reInitTree = () => {
+    tree = [];
+  };
+
+  const getCommentTree = (commentsId, level) => {
+    if (!level) {
+      level = 0;
+    }
+    commentsId.map(commentId => {
+      for (let i = 0; i < comments.length; i++) {
+        if (comments[i].id == commentId) {
+          tree.push({...comments[i], level: level});
+          // do the same for its children
+          getCommentTree(comments[i].kids, level + 10);
+        }
+      }
+    });
+    return tree;
+  };
 
   return (
     <ScrollView style={styles.container}>
-      {comments.map(comment => (
+      {getCommentTree(kids, 0).map(comment => (
         <Comment key={comment.id} {...{comment}} />
       ))}
     </ScrollView>

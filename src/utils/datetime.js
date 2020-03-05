@@ -13,26 +13,26 @@ export function timeSince(date) {
 
   if (difference > 31557600) {
     num = Math.floor(difference / 31557600);
-    period = ' year';
-  } else if (difference > 2629800) {
-    num = Math.floor(difference / 2629800);
-    period = ' month';
+    period = ' y';
+    // } else if (difference > 2629800) {
+    //   num = Math.floor(difference / 2629800);
+    //   period = ' m';
   } else if (difference > 604800) {
     num = Math.floor(difference / 604800);
-    period = ' week';
+    period = ' w';
   } else if (difference > 86400) {
     num = Math.floor(difference / 86400);
-    period = ' day';
+    period = ' d';
   } else if (difference > 3600) {
     num = Math.floor(difference / 3600);
-    period = ' hour';
+    period = ' h';
   } else if (difference > 60) {
     num = Math.floor(difference / 60);
-    period = ' minute';
+    period = ' m';
   }
   if (num > 1) {
     period = period + 's';
   }
 
-  return num + period + verb;
+  return num + period;
 }

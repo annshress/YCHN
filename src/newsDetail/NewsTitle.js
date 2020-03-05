@@ -41,11 +41,13 @@ const NewsTitle = props => {
           </TouchableOpacity>
         </View>
         <SubTitle {...{url}} {...{since}} {...{by}} />
-        <View style={styles.comment}>
-          <Text style={styles.commentText}>{descendants} comments</Text>
+        <View style={styles.commentsNav}>
+          <View style={styles.comment}>
+            <Text style={styles.commentText}>{descendants} comments</Text>
+          </View>
+          <View />
         </View>
       </View>
-      <View style={styles.border} />
     </View>
   );
 };
@@ -65,18 +67,21 @@ const styles = StyleSheet.create({
   },
   comment: {
     marginTop: 5,
-    marginLeft: 20,
+    paddingHorizontal: 10,
     paddingBottom: 5,
+    borderBottomColor: 'red',
+    borderBottomWidth: 4,
   },
   commentText: {
     fontSize: 18,
   },
+  commentsNav: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+  },
   sinceText: {
     color: 'red',
-  },
-  border: {
-    borderBottomColor: 'red',
-    borderBottomWidth: 2,
   },
 });
 
