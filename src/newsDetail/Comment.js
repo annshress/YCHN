@@ -1,36 +1,41 @@
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {timeSince} from '../utils/datetime';
-import {authorText} from '../assets/styles/styles';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  Dimensions,
+  Picker,
+} from 'react-native';
+import CommentBottomBar from './CommentBottomBar';
+import CommentTopBar from './CommentTopBar';
+import MinimizedComment from './MinimizedComment';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const Comment = props => {
-  const {text, time, by, level} = props.comment;
+  const {comment, minimizeComment} = props;
+  const {text, time, by, level, id} = props.comment;
 
   return (
     <View style={{paddingLeft: level, marginTop: level ? -7 : 0}}>
-      <View style={styles.container}>
-        <View style={styles.topBar}>
-          <View>
-            <Text style={authorText.style}>
-              {by} &bull; {timeSince(time)}
-            </Text>
+      <TouchableWithoutFeedback
+        onLongPress={() => {
+          // alert('long pressed');
+          minimizeComment(id);
+        }}>
+        {comment.minimized ? (
+          <MinimizedComment />
+        ) : (
+          <View style={styles.container}>
+            <CommentTopBar time={time} by={by} />
+            <View>
+              <Text>{text}</Text>
+            </View>
+            <CommentBottomBar />
           </View>
-        </View>
-        <View>
-          <Text>{text}</Text>
-        </View>
-        <View style={styles.bottomBar}>
-          <View>
-            <Text>###</Text>
-          </View>
-          <View>
-            <Text>Reply</Text>
-          </View>
-          <View>
-            <Text>Up</Text>
-          </View>
-        </View>
-      </View>
+        )}
+      </TouchableWithoutFeedback>
     </View>
   );
 };
@@ -47,12 +52,9 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: 'white',
   },
-  topBar: {
-    flexDirection: 'row',
-  },
-  bottomBar: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+  picker: {
+    // width: 300,
+    // height: 300,
   },
 });
 

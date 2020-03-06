@@ -30,9 +30,9 @@ export function timeSince(date) {
     num = Math.floor(difference / 60);
     period = ' m';
   }
-  if (num > 1) {
-    period = period + 's';
-  }
+  // if (num > 1) {
+  //   period = period + 's';
+  // }
 
   return num + period;
 }
