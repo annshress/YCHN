@@ -15,14 +15,10 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const Comment = props => {
   const {comment, minimizeComment} = props;
-  const {text, time, by, level, id} = props.comment;
+  const {text, time, by, id} = props.comment;
 
-  return comment.hidden ? (
+  return (
     <View>
-      <Text>hidden</Text>
-    </View>
-  ) : (
-    <View style={{paddingLeft: level, marginTop: level ? -7 : 0}}>
       <TouchableWithoutFeedback
         onLongPress={() => {
           // alert('long pressed');

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {timeSince} from '../utils/datetime';
-import {authorText} from '../assets/styles/styles';
+import {timeSince} from '../../utils/datetime';
+import {authorText} from '../../assets/styles/styles';
 
 const CommentTopBar = props => {
   const {time, by} = props;
