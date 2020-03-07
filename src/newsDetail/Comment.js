@@ -17,7 +17,11 @@ const Comment = props => {
   const {comment, minimizeComment} = props;
   const {text, time, by, level, id} = props.comment;
 
-  return (
+  return comment.hidden ? (
+    <View>
+      <Text>hidden</Text>
+    </View>
+  ) : (
     <View style={{paddingLeft: level, marginTop: level ? -7 : 0}}>
       <TouchableWithoutFeedback
         onLongPress={() => {
