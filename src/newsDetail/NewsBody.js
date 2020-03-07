@@ -22,19 +22,16 @@ class NewsBody extends React.Component {
   updateState(updatedComments) {
     // console.log(this.state.comments);
     const updatedIds = updatedComments.map(comment => comment.id);
-    this.setState(
-      oldState => {
-        return {
-          comments: [
-            ...oldState.comments.filter(
-              each => updatedIds.indexOf(each.id) >= 0,
-            ),
-            ...updatedComments,
-          ],
-        };
-      },
-      () => {},
-    );
+    this.setState(oldState => {
+      return {
+        comments: [
+          ...oldState.comments.filter(
+            each => updatedIds.indexOf(each.id) === -1,
+          ),
+          ...updatedComments,
+        ],
+      };
+    });
   }
 
   getCommentById(id) {
@@ -82,6 +79,8 @@ class NewsBody extends React.Component {
             children={this.state.comments.filter(
               comment => comment.parent == detail.id,
             )}
+            minimizeComment={this.minimizeComment}
+            level={0}
           />
         </ScrollView>
       </View>

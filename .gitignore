@@ -58,8 +58,8 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-ios/*
-android/*
+# ios/*
+# android/*
 
 package-lock.json
 yarn.lock
